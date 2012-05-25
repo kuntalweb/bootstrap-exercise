@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="./css/jquery.tagsinput.css" />
+    <style type="text/css">
+        .navbar a.brand {
+            color:#000000;
+            font-weight:bold;
+            text-shadow:0 1px #666;
+        }
+
+        #input-tags {
+            z-index:-1;
+            position:absolute;
+
+            margin:-35px 0 0 -5px;
+            padding:30px 0 0 0;
+            border-radius : 4px;
+            border:1px solid #ccc;
+            background-color: #eee;
+            opacity:0.0;
+
+            box-shadow:0 3px 3px #bbb;
+        }
+    </style>
+</head>
+<body>
+    <!-- .navbar -->
+    <div class="navbar navbar-fixed-top">
+    	<div class="navbar-inner">
+    		<div class="container">
+    			<a href="./index.html" class="brand">Bootstrap.js</a><!-- /.brand -->
+                <ul class="nav">
+                	<li><a href="#">Home</a></li>
+                	<li><a href="#">About</a></li>
+                	<li><a href="#">Downloads</a></li>
+                	<li><a href="#">Documentation</a></li>
+                	<li><a href="#">Contribute</a></li>
+                </ul><!-- /.nav -->
+    		</div><!-- /.container -->
+    	</div><!-- /.navbar-inner -->
+    </div><!-- /.navbar -->	
+
+    <!-- .container -->
+    <div class="container">
+    	<div class="row">
+            <div class="span12">
+                <!-- .page-header -->
+                <h1 class="page-header">Bootstrap.js</h1>
+                <!-- /.page-header -->
+            </div><!-- /.span12 -->
+    	</div><!-- /.row -->
+
+        <!-- .row -->
+        <div class="row">
+        	<!-- .span12 -->
+            <div class="span12">
+                <center>
+                    <!-- .btn-primary btn-large -->
+                    <a class="btn btn-primary ptn-large" data-toggle="modal" href="#myModal">Show Modal</a>
+                </center> 
+            </div>
+        	<!-- /.span12 -->
+        </div>
+        <!-- /.row -->
+
+        <!-- #myModal.modal -->
+        <div class="row">
+            <div id="myModal" class="modal hide fade">
+                <div class="modal-header">
+                    <!-- .close -->
+                    <button class="close" data-dismiss="modal">x</button>
+                    <h3>Modal Header</h3>
+                </div><!-- /.modal-header -->
+
+                <!-- .modal-body -->
+                <div class="modal-body">
+                    <p>One fine day...</p>
+                    <div style="height:500px"></div>
+                </div><!-- /.modal-body -->
+
+                <!-- .modal-footer -->
+                <div class="modal-footer">
+                    <!-- .btn -->
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    <!-- .btn btn-primary -->
+                    <a href="#" class="btn btn-primary">Save changes</a>
+                </div><!-- /.modal-footer -->
+            </div><!-- /#myModal.modal -->
+        </div>
+
+        <div class="row">
+            <div class="span6 offset3">
+                <div class="alert alert-block alert-error">
+                    <button class="close" data-dismiss="alert">x</button><!-- /.close -->
+
+                    <h4 class="alert-heading">Alert Heading</h4>
+                    <!-- /.alert-heading -->
+
+                    <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+
+                </div><!-- /.alert alert-block alert-error fade in -->
+             </div><!-- /.span6 -->
+        </div><!-- /.row -->
+
+        <!-- .row -->
+        <div class="row">
+        	<!-- .span6 offset3 -->
+        	<div class="span6 offset3">
+        		<!-- .btn btn-primary -->
+                <button class="btn btn-primary" data-toggle="input-tags" href="#input-tags">お気に入りに登録</button>
+        		<!-- /.btn btn-primary -->
+
+                <!-- <div id="modal-tags" class="modal hide fade"> -->
+                <div id="input-tags" class="">
+                    <!-- .modal-body -->
+                    <div class="modal-body">
+                        <form method="post" action="./echo.php" class="form">
+                            <fieldset>
+
+                            <div class="control-group">
+                                <label class="control-label" for="tags">タグの登録</label>
+                                <div class="controls">
+                                    <input name="tags" type="text" id="tags" class="input-xlarge"/>
+                                </div><!-- /.contrls -->
+                            </div><!-- /.control-groups -->
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <!-- .btn -->
+                                    <button id="cancel" type="button" class="btn" data-hoge="input-tags">キャンセル</button>
+                                    <!-- .btn btn-primary -->
+                                    <button type="submit" class="btn btn-primary"/>登録</button>
+                                </div>
+                            </div><!-- /.control-groups -->
+                            </fieldset>
+                        </form>
+                    </div><!-- /.modal-body -->
+                </div><!-- /#myModal.modal -->
+        	</div>
+
+
+        	<!-- /.span6 offset3 -->
+        </div>
+        <!-- /.row -->
+    </div><!-- .contaienr -->
+</body>
+
+<!-- javascript -->
+<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script src="./js/jquery.tagsinput.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $('[data-toggle=input-tags]').click(function () {
+        $(this).addClass('disabled');
+        $('#input-tags').animate(
+            {opacity:1.0},
+            {duration:300}
+        );
+    });
+
+    $('button[type=button]').click(function () {
+        $('#input-tags').animate(
+            {opacity:0.0},
+            {duration:300}
+        );
+        $('[data-toggle=input-tags]').removeClass('disabled');
+    });
+
+    $('input[name=tags]').tagsInput({
+        'height' : '70px',
+        'width' : '315px',
+    });
+</script>
+</html>
